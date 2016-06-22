@@ -1,0 +1,49 @@
+.form_container{
+    background: lightblue;
+    margin: 0 auto;
+    padding-top: 10px;
+    text-align: center;
+
+}
+
+h1{
+
+}
+
+.name_field{
+    width:50%;
+    float:left;
+    margin-bottom: 5px;
+}
+
+.text_field{
+    clear: both;
+    width: 98%;
+    height: 50px;
+}
+
+.button{
+
+}
+
+@media screen and (min-width:1301px){
+    .form_container{
+        width: 35%;
+    }
+}
+
+@media screen and (min-width: 701px) and ( max-width:1300px){
+    .form_container{
+        width: 50%;
+    }
+}
+
+@media screen and (max-width:700px){
+    .form_container{
+        width: 350px;
+    }
+    body{
+        min-width: 350px;
+
+    }
+}

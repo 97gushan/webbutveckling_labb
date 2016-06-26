@@ -9,38 +9,29 @@
         private $user = "root";
         private $pass = "root";
 
+    public function add_comment($name, $mail, $comment){
+        $db_conn = mysql_connect("localhost:8889", "root", "root");
 
-    private function Connect(){
-        $this->conn = new mysqli($this->host,$this->user, $this->pass, $this->database);
-
-        if($this->conn->connect_error){
-            $code = $conn->connect_errno;
-            die("Error: $code");
+        # Check so a connection with the db is established
+        if(!$db_conn){
+            printf("Connect failed: ", mysql_error());
         }
 
-        $this->conn->set_charset("utf8");
+        # save the SQL command to a string
+        $sql = "INSERT INTO comment(name, mail, comment) VALUES('$name','$mail','$comment')";
+
+        # select the correct db
+        mysql_select_db("content");
+
+        $test = mysql_query($sql, $db_conn);
+
+        mysql_close($db_conn);
+
+
 
     }
 
-    public function add_comment($name, $mail, $comment){
-        $this->Connect();
-
-        $sql = "INSERT INTO comments( name, email, content) VALUES (?,?,?)";
-
-        if($stmt = $this->conn->prepare($sql)){
-            $stmt->bind_param("sss", $name, $mail, $comment);
-            $stmt->execute();
-            if($stmt->error)
-            {
-              echo $stmt->error;
-              return "false";
-            }
-            $stmt->close();
-            $this->conn->close();
-            return "true";
-        }
-        $this->conn->close();
-        return "false";
+    public function get_comments(){
 
     }
 }

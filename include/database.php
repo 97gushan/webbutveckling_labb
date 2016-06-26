@@ -32,7 +32,26 @@
     }
 
     public function get_comments(){
+        $db_conn = mysql_connect("localhost:8889", "root", "root");
 
+        $sql = "SELECT * FROM comment";
+
+        mysql_select_db("content");
+
+        $query = mysql_query($sql, $db_conn);
+
+
+
+        while($test = mysql_fetch_array($query)){
+            $name = $name . ";" . $test["name"];
+            $comment = $comment . ";" . $test["comment"];
+        }
+
+        mysql_close($db_conn);
+
+        $content = [$name, $comment];
+
+        return $content;
     }
 }
 

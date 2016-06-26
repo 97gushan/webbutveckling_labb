@@ -17,6 +17,10 @@
             printf("Connect failed: ", mysql_error());
         }
 
+        $name = mysql_real_escape_string($name);
+        $mail = mysql_real_escape_string($mail);
+        $comment = mysql_real_escape_string($comment);
+
         # save the SQL command to a string
         $sql = "INSERT INTO comment(name, mail, comment) VALUES('$name','$mail','$comment')";
 

@@ -1,11 +1,20 @@
-<?php
 
-    include("include/head.php");
+<!DOCTYPE html>
 
-    include("include/form.php");
+<html>
 
-    include("get_from_db.php");
+    <head>
+        <meta charset="utf-8" />
 
-    include("include/footer.php");
+        <link rel="stylesheet" href="assets/css/style.css" />
 
-?>
+    </head>
+
+    <body>
+
+        <a href="register.php">Register user</a>
+
+        <script src='assets/js/jquery.js'></script>
+        <script src='assets/js/main.js'></script>
+    </body>
+</html>

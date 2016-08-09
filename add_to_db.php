@@ -1,19 +1,14 @@
 <?php
-    require("include/database.php");
+    include("database.php");
+    $db = new Database;
 
-    $name = filter_input(INPUT_GET,"name", FILTER_SANITIZE_STRING);
-    $mail = filter_input(INPUT_GET, "email",FILTER_VALIDATE_EMAIL);
-    $comment = filter_input(INPUT_GET, "comment", FILTER_SANITIZE_STRING);
+    $mail = filter_input(INPUT_GET,"email", FILTER_SANITIZE_STRING);
+    $pass = filter_input(INPUT_GET, "pass",FILTER_SANITIZE_STRING);
+    $salt = filter_input(INPUT_GET, "salt", FILTER_SANITIZE_STRING);
 
-    if($name === "" ||
-       $mail === "" ||
-       $comment === ""){
-        die("All forms must be filled in");
-    }
+    $crypt_pass = crypt($pass, $salt);
 
-    $db = new Database();
+    $result = $db->register_user($mail, $crypt_pass, $salt);
 
-    $test = $db->add_comment($name, $mail, $comment);
-
-    echo $test;
-?>
+    echo $result;
+ ?>
